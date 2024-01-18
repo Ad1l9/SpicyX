@@ -1,0 +1,51 @@
+﻿@model List<MenuItem>
+@{
+    int count = 0;
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Meals Table</h4>
+            <br />
+            <a asp-action="Create" class="btn btn-primary btn-icon-text">
+                <i class="mdi mdi-upload btn-icon-prepend"></i>
+                Create Meal
+            </a>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Settings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (MenuItem item in Model)
+                        {
+                            count++;
+
+                            <tr>
+                                <td>@count</td>
+                                <td>
+                                    <img style="width:150px;height:150px" src="~/assets/img/menu/@item.ImageUrl" />
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@item.Price $</td>
+                                <td width="250px">@item.Description</td>
+                                <td>
+                                    <a class="btn btn-danger btn-icon-text"><i class="mdi mdi-delete"></i>Delete</a>
+                                    <a class="btn btn-warning btn-icon-text" asp-action="Update" asp-route-id="@item.Id"><i class="mdi mdi-reload btn-icon-prepend"></i>Update</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

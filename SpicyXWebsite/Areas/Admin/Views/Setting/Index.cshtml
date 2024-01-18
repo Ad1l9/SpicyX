@@ -1,0 +1,44 @@
+﻿@model List<Setting>
+@{
+    int count = 0;
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Setting Table</h4>
+            <br />
+            <a asp-action="Create" class="btn btn-primary btn-icon-text">
+                <i class="mdi mdi-upload btn-icon-prepend"></i>
+                Create Setting
+            </a>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Setting item in Model)
+                        {
+                            count++;
+
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.Key</td>
+                                <td>@item.Value </td>
+                                <td>
+                                    <a class="btn btn-danger btn-icon-text" asp-action="Delete" asp-route-id="@item.Id"><i class="mdi mdi-delete"></i>Delete</a>
+                                    <a class="btn btn-warning btn-icon-text" asp-action="Update" asp-route-id="@item.Id"><i class="mdi mdi-reload btn-icon-prepend"></i>Update</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

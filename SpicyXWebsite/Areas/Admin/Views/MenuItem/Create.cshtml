@@ -1,0 +1,35 @@
+﻿@model CreateMenuItemVm
+
+
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Create Meal</h4>
+            <form method="post" class="forms-sample" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Photo">Image</label>
+                    <input asp-for="Photo" class="form-control" id="Photo">
+                    <span class="text-danger" asp-validation-for="Photo"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name">Name</label>
+                    <input asp-for="Name" class="form-control" id="Name" placeholder="Chines Breakfast">
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <input asp-for="Description" class="form-control" id="Description" placeholder="Description">
+                    <span class="text-danger" asp-validation-for="Description"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price">Price</label>
+                    <input asp-for="Price" class="form-control" id="Price" placeholder="0.00">
+                    <span class="text-danger" asp-validation-for="Price"></span>
+                </div>
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <a asp-action="Index" class="btn btn-light">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
