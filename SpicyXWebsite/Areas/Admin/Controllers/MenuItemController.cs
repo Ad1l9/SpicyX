@@ -127,5 +127,13 @@ namespace SpicyXWebsite.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+		public async Task<IActionResult> Delete(int id)
+		{
+            if (id <= 0) return BadRequest();
+            MenuItem mi = await _context.MenuItems.FirstOrDefaultAsync(i => i.Id == id);
+            if (mi is null) return NotFound();
+
+            return RedirectToAction(nameof(Index));
+		}
 	}
 }

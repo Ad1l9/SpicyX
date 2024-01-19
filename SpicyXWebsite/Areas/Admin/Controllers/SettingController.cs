@@ -82,6 +82,7 @@ namespace SpicyXWebsite.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0) return BadRequest();

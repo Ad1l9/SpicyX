@@ -1,11 +1,20 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SpicyXWebsite.DAL;
+using SpicyXWebsite.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
+{
+	opt.Password.RequiredLength = 7;
+	opt.Password.RequireNonAlphanumeric= false;
+	opt.User.RequireUniqueEmail= true;
+}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
 
 var app = builder.Build();
 
@@ -18,11 +27,14 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
+
+app.UseAuthentication();
+
 app.UseAuthorization();
+app.UseStaticFiles();
 
 
 app.MapControllerRoute(
